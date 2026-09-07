@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --border: #e2e8f0;
+    --accent: #14b8a6;
+  }
+  .dark {
+    --bg-primary: #0a0f1e;
+    --bg-secondary: #111827;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #1e293b;
+    --accent: #2dd4bf;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  .dark ::-webkit-scrollbar-thumb { background: #334155; }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-white/20 dark:border-white/10;
+  }
+  .glass-card {
+    @apply bg-white/60 dark:bg-gray-900/60 backdrop-blur-lg border border-white/30 dark:border-gray-700/50 rounded-2xl shadow-glass;
+  }
+  .btn-primary {
+    @apply bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-glow hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200;
+  }
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm;
+  }
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-gray-900 dark:text-white;
+  }
+  .nav-link {
+    @apply text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 font-medium transition-colors duration-200;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-teal-900/20 font-medium transition-all duration-200;
+  }
+  .sidebar-link.active {
+    @apply text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-900/20;
+  }
+  .mood-chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium;
+  }
+  .stat-card {
+    @apply card p-6 flex flex-col gap-2 hover:shadow-md transition-shadow duration-200;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent;
+  }
+  .text-gradient-warm {
+    @apply bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent;
+  }
+  .bg-mesh {
+    background-image: radial-gradient(at 40% 20%, hsla(162, 72%, 50%, 0.08) 0px, transparent 50%),
+                      radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 0.06) 0px, transparent 50%),
+                      radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 0.05) 0px, transparent 50%);
+  }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+/* Chart animations */
+.chart-bar { transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.chart-line { transition: stroke-dashoffset 1.2s ease-in-out; }
+
+/* Mood colors */
+.mood-very_happy { @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300; }
+.mood-happy { @apply bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300; }
+.mood-neutral { @apply bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300; }
+.mood-sad { @apply bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300; }
+.mood-very_sad { @apply bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300; }
+.mood-anxious { @apply bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300; }
+.mood-angry { @apply bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300; }
+.mood-excited { @apply bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-300; }
+.mood-grateful { @apply bg-pink-100 text-pink-800 dark:bg-pink-900/40 dark:text-pink-300; }
+.mood-confused { @apply bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300; }
